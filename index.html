@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Ejemplo web api</title>
+    <meta charset="utf-8" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="codigo.js"></script>
+</head>
+<body class="bg-gray-100 p-8 max-w-7xl mx-auto"></body>
+    <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">Ejemplo web api</h1>
+    <p class="text-gray-600">Nombre: Hector Gerardo Rodriguez Chamagua</p>
+    <p class="text-gray-600 mb-4">Carnet: RC22009</p>
+    <p><button onclick="obtenerProductos();this.style.display='none';" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Obtener Productos</button></p>
+
+    <div id="formularioAgregar" class="bg-white p-6 rounded-lg shadow-md mb-8">
+        <h2 class="text-2xl font-bold text-gray-700 mb-4">Agregar Producto</h2>
+        <form id="formAgregarProducto" class="space-y-4">
+            <div>
+                <label for="title" class="block text-gray-700 font-semibold mb-2">Título:</label>
+                <input type="text" id="title" name="title" required class="w-full p-2 border border-gray-300 rounded">
+            </div>
+            <div>
+                <label for="price" class="block text-gray-700 font-semibold mb-2">Precio:</label>
+                <input type="number" id="price" name="price" required class="w-full p-2 border border-gray-300 rounded">
+            </div>
+            <div>
+                <label for="description" class="block text-gray-700 font-semibold mb-2">Descripción:</label>
+                <input type="text" id="description" name="description" required class="w-full p-2 border border-gray-300 rounded">
+            </div>
+            <div>
+                <label for="category" class="block text-gray-700 font-semibold mb-2">Categoría:</label>
+                <select id="category" name="category" class="w-full p-2 border border-gray-300 rounded">
+                    <option value="electronics">Electrónicos</option>
+                    <option value="jewelery">Joyería</option>
+                    <option value="men's clothing">Ropa Caballero</option>
+                    <option value="women's clothing">Ropa Dama</option>
+                </select>
+            </div>
+            <div>
+                <label for="image" class="block text-gray-700 font-semibold mb-2">URL de Imagen:</label>
+                <input type="url" id="image" name="image" required class="w-full p-2 border border-gray-300 rounded">
+            </div>
+            <button type="button" onclick="agregarProducto()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Agregar Producto</button>
+        </form>
+    </div>
+
+    <div id="listado" class="hidden bg-white p-6 rounded-lg shadow-md">
+        <form name="filtroprods" id="filtroprods" class="space-y-4">
+            <p class="font-semibold text-gray-700">Seleccione Categorias</p>
+            <div class="flex gap-4 flex-wrap">
+                <label class="inline-flex items-center">
+                    <input type="checkbox" id="c1" value="c1" checked class="form-checkbox text-blue-500">
+                    <span class="ml-2">Electronicos</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="checkbox" id="c2" value="c2" checked class="form-checkbox text-blue-500">
+                    <span class="ml-2">Joyería</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="checkbox" id="c3" value="c3" checked class="form-checkbox text-blue-500">
+                    <span class="ml-2">Ropa Caballero</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="checkbox" id="c4" value="c4" checked class="form-checkbox text-blue-500">
+                    <span class="ml-2">Ropa Dama</span>
+                </label>
+            </div>
+            
+            <ol class="list-decimal pl-5 text-gray-600">
+                <li>Click en la imagen para Acercamiento</li>
+            </ol>
+
+            <table id="tabla" class="min-w-full table-auto">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">id</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">foto</th>
+                        <th id="price" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer">price</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">title</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">description</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">category</th>
+						<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">boton</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody" class="bg-white divide-y divide-gray-200"></tbody>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
